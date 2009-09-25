@@ -1,0 +1,24 @@
+/*
+-----------------------------------------------------
+Tweaks CSS file for [ PROJECT NAME ]
+Media: screen, projection
+
+Author: AGENCY NAME [ email at agencyname dot tld ]
+-----------------------------------------------------
+*/
+
+/* Fix IE label pointer: uses non-standard hand, not pointer */
+* html label { cursor:hand; }
+
+/* Create consistent text areas in <= IE6  */
+* html textarea { overflow-y:auto; }
+
+/* clearfix */
+.clearfix {
+	display:inline-block;
+}
+
+* html .clearfix {
+	display:block;
+	height:1%;
+}

@@ -1,0 +1,3 @@
+# robots.txt for sitename.tld.
+User-agent: *
+Disallow: /sample/

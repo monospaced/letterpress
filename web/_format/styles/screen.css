@@ -1,0 +1,433 @@
+/*
+-----------------------------------------------------
+Default CSS file for [ PROJECT NAME ]
+Media:screen, projection
+
+Author: AGENCY NAME [ email at agencyname dot tld ]
+
+To enable easier tabbing:
+= denotes main section
+& denotes sub section
+
+Also:
+	- IE specific stylesheet (tweaks.css)
+	- print stylesheet (print.css)
+	- Add as required
+
+Table of contents
+-----------------------------------------------------
+	1.	  Constants										For reference purposes only
+	2.	  Reset										   Equalising all browsers
+	3.	  Defaults									  Standard sitewide definitions
+		A.	  Links
+		B.	  Typography
+		C.	Tables
+		D.	Forms
+		E.	Lists
+	4.	  Structure/Layout							  Template building blocks
+	5.	  Navigation									All site navigation
+		A.	  Main menu
+		B.	  Secondary menu
+	6.	  Furniture									   Template look and feel
+		A.	  Header
+		B.	  Wrapper
+		C.	  Footer
+	7.	  Page Content								  All content within wrapper
+		A.	  Primary content
+		B.	  Secondary content
+		C.	Modules
+		D.	Page/Section specific
+	8.	Misc
+
+
+1. Constants
+-----------------------------------------------------
+	Colours
+	-------------------------------------------------
+	#fff = Colour (main background colour)
+	# = Colour (text colour)
+	# = Colour (link hover colour)
+	# = Colour (sidebar colour)
+
+	Font sizes
+	-------------------------------------------------
+	all =	  1.2em (12px)
+
+
+2. Reset
+----------------------------------------------------- */
+	html, body, div, span,
+	ul, ol, li, h1, h2, h3, h4, h5, h6, p, a, img, dl, dt, dd, em, strong, object,
+	form, fieldset, input, select, textarea, label, legend, button,
+	table, tr, th, td, tbody, tfoot, thead, caption,
+	blockquote, abbr, acronym, address, big, cite, code, del, dfn, ins, kbd, q, samp, small, sub, sup, tt, var, pre,
+	b, u, i, center, font, applet, strike, s, iframe, embed, form {padding:0; margin:0; border:0; outline:0; font-size:1em; background:transparent; vertical-align:baseline;}
+	address, abbr, caption, cite, code, dfn, em, strong, th, var, h1, h2, h3, h4, h5, h6 {font-weight:normal; font-style:normal;}
+	ul, dir, menu {list-style:none;}
+	table {border-collapse:collapse; border-spacing:0;}
+	caption, th {text-align:left;}
+	blockquote, q {quotes:none;}
+	blockquote:before, blockquote:after, q:before, q:after {content:''; content:none;}
+	acronym {cursor:help;}
+	nobr {white-space:normal;}
+	hr {display:none;}
+/* */
+
+
+/* = 3. Defaults
+----------------------------------------------------- */
+	body {
+		background-color:#fff;
+		font-size:62.5%;
+		font-family:Arial, Helvetica, sans-serif;
+		line-height:1;
+	}
+
+	/* Text included for non-visual users, hide content for screen */
+	.context {
+		height:1px;
+		left:0px;
+		overflow:hidden;
+		position:absolute;
+		top:-500px;
+		width:1px;
+	}
+
+	/* Hides contents but leaves structuer in place */
+	.context-flow {/* Hides contents off-left */
+		text-indent:-20000px;
+	}
+
+	/* text that is 'replaced' by an image (via a span) */
+	.replaced {
+		position:relative;
+	}
+
+	.replaced span {
+		background:transparent no-repeat left top;
+		display:block;
+		height:100%;
+		left:0;
+		position:absolute;
+		top:0;
+		width:100%;
+	}
+
+	/* clearfix - fixes float clearing issues */
+	.clearfix:after {
+		clear:both;
+		content:".";
+		display:block;
+		height:0px;
+		visibility:hidden;
+	}
+
+	/* horizontal rules (hr) - allows universal control */
+	.hr {
+		background:#000; /* Gecko/Opera */
+		border:0px solid #000; /* necessary to ensure hr is only 1px high in all browsers */
+		clear:both;
+		color:#000; /* IE */
+		height:1px;
+		margin:1.5em 0px 1.5em 0px;
+		padding:0px;
+	}
+	.hr hr {display:none;}
+
+	/* Used to mark up content that needs attention */
+	.edit-me { color:red; }
+
+
+	/* & 3A. Links
+	---------------------------- */
+		a,
+		a:link {
+			color:#00f;
+			outline:0;
+			font-style:inherit;
+			font-weight:inherit;
+			text-decoration:none;
+		}
+
+		a:hover		{ color:#000; }
+		a:active	{ text-decoration:underline; }
+		a:focus		{ color:#0f6; }
+
+		/* links - extra classes */
+
+
+	/* & 3B. Typography
+	---------------------------- */
+		p, address, li, dt, dd, td, th {
+			color:#000;
+			font-size:1.2em;
+			line-height:1.5;
+		}
+
+		h1, h2, h3, h4, h5, h6 {
+			color:#000;
+			font-weight:bold;
+			line-height:1.5;
+			margin-bottom:1em;
+		}
+
+		h1 { font-size:2.4em; }
+		h2 { font-size:2.2em; }
+		h3 { font-size:1.8em; }
+		h4 { font-size:1.6em; }
+		h5 { font-size:1.4em; }
+		h6 { font-size:1.2em; }
+
+		input,
+		select,
+		textarea { font-size:inherit; }
+
+		p { margin-bottom:1em; }
+
+		address { font-style:normal; }
+
+		em { font-style:italic; }
+		strong { font-weight:bold; }
+
+		/* typography - extra classes */
+
+
+	/* & 3C. Tables
+	---------------------------- */
+		table {
+			margin-bottom:1em;
+			width:100%;
+		}
+
+		thead { text-align:center; }
+
+		td, th { padding:5px; }
+
+		th { font-weight:bold; }
+
+		/* tables - extra classes */
+			tr.alt td { background:#f5f5f5; }
+
+
+	/* & 3D. Forms
+	---------------------------- */
+		form {
+			margin-bottom:1em;
+			text-align:left;
+		}
+
+		fieldset { text-align:left; }
+
+		legend { display:none; }
+
+		label {
+			cursor:pointer;
+			display:block;
+			font-weight:bold;
+		}
+
+		input,
+		textarea {
+			background:#fff;
+			border:1px solid #ccc;
+			font-family:Arial, Helvetica, sans-serif;
+		}
+
+		/* forms - extra classes */
+			input.text { }
+			input.checkbox { }
+			input.radio { }
+			input.button { }
+
+
+	/* & 3E. Lists
+	---------------------------- */
+		dt {font-weight:bold; }
+
+		dd { margin-bottom:1.5em; }
+
+		ol,
+		ul { margin:0 0 1em 1.5em; }
+
+		ol { list-style:decimal; }
+		ul { list-style:none; }
+
+		li {
+			background:transparent url(../images/global_bullet.png) no-repeat 0 4px;
+			padding-left:9px;
+		}
+
+		/* nested lists */
+			li ol,
+			li ul	{ margin:0 2em; }
+			li li	{ font-size:1em; }
+
+		/* lists - extra classes */
+
+
+/* */
+
+
+
+/* = 4. Structure/Layout
+----------------------------------------------------- */
+	html,
+	body {
+		text-align:center;
+	}
+
+	#container {
+		margin:0 auto;
+		text-align:left;
+		width:960px;
+	}
+
+	#header {
+		clear:both;
+	}
+
+	#wrapper { }
+
+	#primary-content,
+	#secondary-content {
+		display:inline;
+		float:left;
+	}
+
+	.row {
+		clear:both;
+		overflow:auto; /* clearing method */
+		width:100%;
+	}
+
+	/* when needing to add a clearfix, overwrite default row clear */
+	.row.clearfix {
+		overflow:visible;
+	}
+
+	.module-container,
+	.module {
+		display:inline;
+		float:left;
+		margin:0;
+	}
+
+	#footer {
+		clear:both;
+	}
+
+
+	/* & 2/3 column page - standard setting
+	---------------------------- */
+		#primary-content { }
+
+		#secondary-content { }
+
+
+/* */
+
+
+
+/* = 5. Navigation
+----------------------------------------------------- */
+
+	/* & 5A Primary navigation
+	---------------------------- */
+		ul#nav-primary { }
+
+		ul#nav-primary li { }
+
+		ul#nav-primary li a { }
+
+		ul#nav-primary li a:hover { }
+
+
+	/* & 5B Secondary navigation
+	---------------------------- */
+		ul#nav-secondary { }
+
+		ul#nav-secondary li { }
+
+		ul#nav-secondary li a { }
+
+		ul#nav-secondary li a:hover { }
+
+
+
+/* */
+
+
+
+/* = 6. Furniture
+----------------------------------------------------- */
+
+	#container { }
+
+
+	/* & 6A Header
+	---------------------------- */
+		#header { }
+
+
+	/* & 6B Wrapper
+	---------------------------- */
+		#wrapper { }
+
+
+	/* & 6C Footer
+	---------------------------- */
+		#footer { }
+
+
+/* */
+
+
+
+/* = 7. Content elements
+----------------------------------------------------- */
+
+	/* & 7A. Primary content
+	---------------------------- */
+
+
+
+	/* & 7B. Secondary content
+	---------------------------- */
+		#sidebar { }
+
+
+
+	/* & 7C. Modules
+	---------------------------- */
+
+		/* standard module blocks */
+			.module { }
+
+
+
+	/* & 7D. Page/Area specific styles
+	---------------------------- */
+
+		/* home page */
+
+
+/* */
+
+
+
+/* = Misc
+----------------------------------------------------- */
+
+	/* & Styles for deprecated tags alerting CMS users that they are using illegal tags
+	---------------------------- */
+		b, big, blink, center, font, i, layer, marquee, small, u {
+			background:yellow;
+			border:2px dashed green;
+			color:red;
+			font-size:30px;
+			font-weight:bold;
+		}
+		b:after, big:after, blink:after, center:after,	font:after, i:after, layer:after, marquee:after, small:after, u:after {
+			content:" You are using a deprecated tag; please fix."
+		}
+/* */

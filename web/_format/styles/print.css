@@ -1,0 +1,73 @@
+/*
+-----------------------------------------------------
+Print CSS file for [ PROJECT NAME ]
+Media: print
+
+Author: AGENCY NAME [ email at agencyname dot tld ]
+-----------------------------------------------------
+*/
+
+
+/* Hide irrelevant content */
+.context { display:none; }
+
+/* = 3. Defaults
+----------------------------------------------------- */
+	body {
+		background:#fff;
+		color:#000;
+		font-size:12pt;
+		font-family:"bitstream vera serif",garamond,"times new roman",times,serif;
+	}
+
+	h1, h2, h3, h4 { margin:0 0 0.5em 0; }
+	h1 { font-size:24pt; }
+	h2 { font-size:18pt; }
+	h3 { font-size:16pt; }
+	h4 { font-size:14pt; }
+	h5, h6 { font-size:12pt; }
+
+	legend {display:none;}
+	fieldset {border:0;}
+
+
+/* = 4. Structure/Layout
+----------------------------------------------------- */
+
+	#container {
+		margin:10px 10px 10px 10px;
+		text-align:left;
+	}
+
+
+/* = 5. Navigation
+----------------------------------------------------- */
+
+
+
+/* = 6. Furniture
+----------------------------------------------------- */
+
+	/* & 6A Header
+	---------------------------- */
+
+		#header { }
+
+
+	/* & 6B Wrapper
+	---------------------------- */
+
+		#wrapper { }
+
+
+	/* & 6C Footer
+	---------------------------- */
+
+		#footer { }
+
+
+/* = 7. Content elements
+----------------------------------------------------- */
+
+	/* & 7A. Lorem
+	---------------------------- */
