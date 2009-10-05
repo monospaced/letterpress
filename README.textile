@@ -1,0 +1,16 @@
+h2. letterpress
+
+letterpress is a lightweight file structre with accompanying set of conventions intended to give a consistent starting point to HTML/CSS/JS template builds.
+
+h3. Download
+
+* Source: "http://github.com/letterpress":http://github.com/letterpress
+* Download "http://github.com/letterpress"
+
+h3. Current contributors
+
+* Scott Boyle
+* Pete Goodman
+* Ian Hart
+* Finbarr Notte
+* Paul Love
