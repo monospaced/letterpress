@@ -1,11 +1,11 @@
 h2. letterpress
 
-letterpress is a lightweight file structre with accompanying set of conventions intended to give a consistent starting point to HTML/CSS/JS template builds.
+letterpress is a lightweight file structure with accompanying set of conventions intended to give a consistent starting point to HTML/CSS/JS template builds.
 
 h3. Download
 
 * Source: "http://github.com/letterpress":http://github.com/letterpress
-* Download "http://github.com/letterpress"
+* Download "http://github.com/letterpress":http://github.com/letterpress
 
 h3. Current contributors
 
