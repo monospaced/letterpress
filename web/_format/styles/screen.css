@@ -143,14 +143,13 @@ Table of contents
 		a,
 		a:link {
 			color:#00f;
-			outline:0;
 			font-style:inherit;
 			font-weight:inherit;
 			text-decoration:none;
 		}
 
 		a:hover		{ color:#000; }
-		a:active	{ text-decoration:underline; }
+		a:active	{ text-decoration:underline;outline:none; }
 		a:focus		{ color:#0f6; }
 
 		/* links - extra classes */
