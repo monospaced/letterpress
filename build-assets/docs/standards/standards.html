@@ -1,0 +1,493 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Front End Standards</title>
+</head>
+<body>
+	<h1>Front End Standards</h1>
+	<h2>Overview</h2>
+	<p>What does it cover?</p>
+	<ul>
+		<li>Front-end build (templating) standards and methods</li>
+		<li>Recommendations for any front-end issues outside the scope of templating</li>
+		<li>Guidance for building HTML emails</li>
+	</ul>
+
+	<h2>Contents</h2>
+	<ul>
+		<li>Standards and techniques for site builds</li>
+		<li>Standards and techniques for HTML emails</li>
+		<li>Server configuration recommendations</li>
+	</ul>
+	<h2>TO DO </h2>
+	<ul>
+		<li>Justifications for critical points</li>
+		<li>Link out to sources where appropriate</li>
+		<li>Anything else in <b>red,</b> and any comments</li>
+		<li>Notes on maintaining copyright info and checking suitability/licensing of "found" code</li>
+	</ul>
+	<h2>Standards and techniques for site builds</h2>
+	<p>This section outlines standards and techniques related to templating. Need an overview in here - high level guidelines. This next taken from BB Min Criteria - to revise.</p>
+	<ul>
+		<li>The website must be compatible with a wide range of browsers</li>
+		<li>Page weight must be kept to a minimum</li>
+		<li>No presentational HTML elements – all styling should be controlled using CSS</li>
+		<li>Semantically structured HTML</li>
+		<li>A minimum amount of HTML tags necessary for the given design</li>
+		<li>Accessible forms built with semantic markup</li>
+		<li>No tables except for the rendering of tabular data</li>
+		<li>The website must be accessible to people with disabilities</li>
+	</ul>
+	<h3>Colour profiles</h3>
+	<p>Before starting any development work, please ensure you follow the instructions in the post below to avoid colour-mismatch issues.</p>
+
+	<p>http://www.viget.com/inspire/the-mysterious-save-for-web-color-shift/</p>
+
+	<h3>Browser compatibility</h3>
+
+	<p>Recommend using Yahoo GBS.</p>
+
+	<h2>Page Weight</h2>
+	<p>No formal page weight; speed is generally more important and is more a factor of front-end engineering than asset size. Focus on optimization instead, including:
+	</p>
+	<ul>
+		<li>Removing unnecessary assets from production sites</li>
+		<li>Gziping textual assets</li>
+		<li>Keeping HTML, CSS and Javascript as light as possible</li>
+		<li>Refactoring CSS when structural changes are made</li>
+	</ul>
+	<h3>Doctype, character set and content type.</h3>
+	<p>Use either XHTML 1.0 Strict or HTML 4.01 Strict.</p>
+	<p>Using a Traditional Doctype can introduce some IE-specific rendering issues, and also the use of presentational attributes that should be separated out into the CSS.</p>
+	<p>Use UTF-8 character set to ensure that foreign-language characters are correctly rendered.</p>
+	<p>All HTML should be served as text/html to ensure that all browsers render the page in Standards mode.</p>
+	<h3>General and basics</h3>
+	<p>Make sure all spelling is accurate (particularly when specifying class and id attributes).</p>
+
+	<h3>Frames and iframes</h3>
+	<p>Frames and iframes should be avoided wherever possible and only used when absolutely necessary.</p>
+	<p>However, it should be recognised that iframes are required for certain techniques. Notable exceptions:</p>
+	<ul>
+		<li>Carrying hidden data, e.g. DoubleClick ad tags</li>
+		<li>Cross-Domain Communication</li>
+		<li><a href="http://en.wikipedia.org/wiki/Comet_%28programming%29">Comet</a> (under certain circumstances)</li>
+		<li>Certain display techniques (e.g. Lightbox)</li>
+	</ul>
+	<p>Care must be taken to ensure that the use of iframes under any circumstances does not adversely affect accessibility.</p>
+	<h3>Accessibility</h3>
+	<p>Conform to <a href="http://www.w3.org/TR/WCAG20/">WCAG 2.0</a> and local disability laws/guidelines as appropriate. WCAG 2.0 has now <a href="http://www.w3.org/WAI/WCAG20/wcag2faq#done">reached Final Recommendation status</a>. Unless client requires WCAG 1.0.</p>
+	<p>Make sure you read and understand WCAG 2.0.</p>
+	<p>While working to recognised standards (e.g. WCAG 1.0, WCAG 2.0) makes good sense, it should be recognised that accessibility is often a case of pragmatism over strict compliance.</p>
+	<p>For example, providing alt text regardless of context can lead to duplicate content and a reduced experience.</p>
+	<h4>Skip navigation</h4>
+	<p>All pages should feature "skip" navigation to aid users with screenreaders in particular. "Skip" navigation should be the first element on every page and should feature the following items (where appropriate):</p>
+	<ul>
+		<li>Skip to main content</li>
+		<li>Search</li>
+		<li>Site map</li>
+		<li>Homepage</li>
+	</ul>
+	<p>While visible skip links (or skip links that become visible on focus) can be useful for people with motor disabilities or repetitive strain injuries, we recommend that in most cases they are hidden off-page as designs rarely allow space for this option.</p>
+
+	<h4>Hidden contextual items</h4>
+	<p>Hidden headings in particular can help add structure to a page. These should fit within the normal heading hierarchy and be hidden using the class "context".</p>
+	<p> Other types of hidden content?</p>
+	<ul>
+		<li>Form labels - expand on this.</li>
+	</ul>
+	<h4>Tabindex</h4>
+	<p>Having badly implemented tabindex is worse than having no tabindex at all. We won't be adding tabindex, instead relying on natural document order.</p>
+	<h4>Accesskeys</h4>
+	<p>Complicated accesskey sets can be difficult to manage on large websites. Having badly implemented accesskeys is worse than having no accesskeys at all.</p>
+	<p>Our recommendation is that if accesskeys are implemented, they should be used sparingly and thoughtfully. This can be achieved by attaching accesskeys to the links in "skip navigation".</p>
+	<h4>Contrast</h4>
+	<p>Notes on contrast here.</p>
+
+	<h3>Project structure</h3>
+	<ul>
+		<li>web/_static-templates - all HTML templates. This should be published to development/staging environments for testing but not published to any public-facing environment.</li>
+		<li>web/_format- all formatting assets (images, icons, swfs), in appropriate subfolder</li>
+		<li>web/_function - all functional assets (JavaScript)</li>
+		<li>web/_media - all assets that are not part of core site furniture (e.g. sample product imagery)</li>
+		<li>build-assets/- all build files incl. FLA, PSD etc</li>
+	</ul>
+	<p>How do we decide upon any sub-directories - names, and what goes where? Especially for images, and a potentially large and complex javascript library. TBD.</p>
+
+	<h3>File-naming conventions</h3>
+	<p>All file names (HTML, CSS, JavaScript, images) should be lower case, to prevent confusion.</p>
+	<p>No filenames should have spaces. Instead, an underscore ("_") should be used in place of a space in included files (images/JavaScript/CSS) and a hyphen ("-") should be used in place</p>
+	<p>of a space in HTML files URL paths. This needs work - dashes to expand on identifiers eg. nav_red-arrow_left</p>
+	<p>Images named for page/area, so global_, home_, etc? TBD</p>
+	<h3>Site structure</h3>
+	<p>There must always be a sitemap (for accessibility).</p>
+	<p>Terms and conditions should be present (if relevant).</p>
+	<p>The Companies Act 2007 requires that all websites should now legibly display the following details somewhere on the site:</p>
+	<ul>
+		<li>Full company name</li>
+		<li>Company's place of registration and the number with which it is registered</li>
+		<li>Address of the company's registered office</li>
+	</ul>
+
+	<h3>Typography</h3>
+	<p>CSS default font size is <a href="http://www.clagnut.com/blog/348/">62.5%</a>. Everything after that should be sized in "em". Line heights should be <a href="http://meyerweb.com/eric/thoughts/2006/02/08/unitless-line-heights/">unitless</a> where possible.</p>
+	<p>For image replacement, use <a href="http://www.mezzoblue.com/tests/revised-image-replacement/#gilderlevin">Gilder/Levin</a> without Shea Enhancement. When the replacement image has to be transparent (and therefore cannot hide the text below), there is no ideal solution for a 'CSS-on, Images-off' situation, as the text must be hidden from view.</p>
+	<p>Info on font stacks</p>
+	<p>The decision of whether to use <a href="http://designintellection.com/2008/this-is-how-you-get-sifr-to-work/">sIFR</a> on a project must be made in full knowledge of it's restrictions and the issues it causes. Some of the main issues include:</p>
+	<ul>
+		<li>There's a CPU hit when initially rendering a page with lots of sIFR</li>
+		<li>Poor support for leading, kerning, line-heights (making it very difficult to acheive cross-browser pixel perfection)</li>
+		<li>Page layouts tend to 'jump' a lot when sIFR is first initialised on page load</li>
+		<li>sIFR text doesn't resize all that well when the browser text size is changed</li>
+		<li>sIFR use should be limited to headings, not main page text</li>
+		<li>It is not possible to select sIFR text and normal HTML text at the same time in one smooth selection motion</li>
+		<li>the actionscript (at least for sIFR 1 &amp; 2) was not optimised and so full of memory leaks making it CPU intensive.</li>
+	</ul>
+	<h3>Javascript</h3>
+	<h4>General</h4>
+	<ul>
+		<li>To ensure content is accessible to all, a website must remain functional if the user does not have JavaScript enabled. A user with an older, non-visual or text-based Internet browser may not receive the same experience, but must still see replacement content that portrays the key relevant information. Use the principles of Progressive Enhancement and Graceful Degradation to enrich the page.</li>
+		<li>Don't use javascript: calls in links.</li>
+		<li>Ideally, all JavaScript should remain unobtrusive, keeping all functionality in external files to enable re-use across the site. All event calls should be attached via the DOM rather than inserted inline.</li>
+		<li>There will be times when inline JavaScript is necessary. Exceptions include tracking code, embedding flash files via SWF Object, and passing JavaScript content from a backend system when the use of AJAX is unavailable.</li>
+		<li>Client-side form validation can be used, but must not be relied upon, as the presence of JavaScript cannot be assured. All forms must also be validated on the server side.</li>
+		<li>CSS styles should not be set directly through JavaScript. Instead, an additional value should be set on the body tag via JavaScript on DOM load, to enable CSS styles for JavaScript-enhanced pages. This enables the CSS development of these pages to be carried out before the JavaScript is implemented.</li>
+		<li>If you are using JavaScript to set listeners for mouse events, ensure that you are also creating events to cater for the interaction of users who use non-pointing devices. This makes pages usable for keyboard users and alternative devices.</li>
+		<li>JSLint should be used to ensure there are no errors in JavaScript code. This is a necessary step before any code can be minified, and helps to ensures all code is well formed.</li>
+	</ul>
+	<h4>Coding Specifics</h4>
+	<ul>
+		<li>Avoid using global variables and functions. They pollute the global namespace and increase the potential for code conflicts, especially when having to work with third party JavaScript files, or pass on code to others to implement. There are valid alternatives to using the global scope: either namespace your code, or use object literal, the Module Pattern or self executing function notation.</li>
+		<li>As a preferred method, attempt to use the Yahoo! Module Pattern. This well-documented technique allows code to be structured in a standard defined manner, and ensures a separation between public and private variables and methods. It also makes it possible to alter classes quickly from a singleton pattern to using a constructor with only a few small changes.</li>
+		<li>Deciding upon the most appropriate JavaScript library/framework for the project will depend upon the required functionality for the site. Use jQuery for sites that only require a small amount of JavaScript functionality, as it can be the quickest to implement. If there is a reasonable level of complexity then it is recommended to switch to YUI, as it offers a high level of functionality, support and documentation.</li>
+		<li>Where appropriate, all JavaScript functions should be initialised through an init() method. This standard approach helps to increase consistency throughout the site.</li>
+		<li>Don't assume the structure of the HTML - instead of hardcoding specific IDs to search for in JavaScript, allow them to be passed through to the function via the init call.</li>
+	</ul>
+	<h4>File structure</h4>
+	<ul>
+		<li>All JavaScript should be split into two separate areas, the generic library code and any site-specific code. Each of these will then be further separated into sub-sections based on function.</li>
+		<li>'library' should contain all files that are unlikely to need changing between different projects, whether they've been written in-house or they’re third-party scripts. It is likely to contain the files for the JavaScript Framework of choice, SWF Object, sIFR, any development tools, and any other files to help with Cookies, PNG fixes, etc. </li>
+		<li>'site' should contain all site-specific code, plus a single ‘manager’ file to manage the various processes and keep all initialisation calls in a single place (more on this below). This ensures a single logical place to identify where and when different functions should run.</li>
+	</ul>
+	<h4>Importing JavaScript</h4>
+	<ul>
+		<li>The method for importing JavaScript files into the page is dependent on a few conditions.</li>
+		<li>If we have the ability to change the &lt;head&gt; of the HTML files for different pages and areas of the site, and if is unlikely that there will be many files, then they can be imported manually/statically by changing the files requested in each HTML page. </li>
+		<li>For some sites we may not be able to change the contents of the HTML &lt;head&gt; for different pages/areas of the site. Other sites may require a large range of files for different pages. In either of these cases, then the alternative approach is to import a minimal number of standard scripts in the head of every HTML file, and handle the sub-loading of any required JavaScript files through a 'loader' extension. There are third party libraries that do this for you.</li>
+		<li>If possible, JavaScript should be imported in the foot of the page, in accordance with the Yahoo! YSlow guidelines. However this should be tested thoroughly, as it can cause layout issues in certain circumstances.</li>
+	</ul>
+	<h4>Serving JavaScript</h4>
+	<ul>
+		<li>All JavaScript functions should be kept in separate files during the build process, separated where appropriate. </li>
+		<li>Whether these files are collected together into a single file for deployment depends on how many files there is likely to be for a site, and whether it can be done dynamically without losing the structure of the original files.</li>
+		<li>JavaScript should be served as Gzipped where possible, to avoid excessive file size.</li>
+	</ul>
+	<h3>CSS</h3>
+	<h4>CSS Technique</h4>
+	<ul>
+		<li>The presentation of the websites must be controlled using CSS. It is not acceptable to use any presentational HTML.</li>
+		<li>Classes and IDs should be semantically named</li>
+		<li>Keep all CSS rules in external CSS files. No inline or embedded styles should be used except under very limited circumstances. These may include the use of background imagery for content blocks that are controlled by a CMS or database, (more...).</li>
+		<li>Links should be displayed as block where appropriate/possible (WHY)</li>
+		<li>Use background images for navigation dividers rather than HTML characters, as they are decorative rather than part of the content. This way they are not read out by screen readers or displayed for browsers without CSS support.</li>
+		<li>Apply class=”context” rather than display:none when hiding content for screenreaders that does not require a corresponding image. This method uses absolute positioning to hide the content which is much more screenreader friendly.</li>
+		<li>Duplicate :hover styles for keyboard users with :focus and :active. Consider the lack of hover states for users with non-mouse pointing devices (including touchscreens).</li>
+		<li>Bulletproof your builds, so when the page is resized the content scales gracefully. At the very least all content should remain legible and the layout should not break when resized to 'Larger' and 'Largest' in IE6.</li>
+		<li>If you are building a fixed width design, use pixel units (px) for horizontal spacing, and ems for vertical, to allow the page content to scale when font size is increased, without introducing a horizontal scrollbar.</li>
+		<li>Try to limit the use of position relative/absolute as it removes elements from the document order, sometimes leading to unnecessary complications. It is often needed when needing to position an element to the bottom of a container, but otherwise try first to mimic the effect with floats and margins.</li>
+		<li>Avoid use of !important unless no other option (as it has serious impact on cascade and future maintenance work)</li>
+		<li>Be more specific (e.g. ul.box rather than .box – helps with cascade and improves readability) but don't be too specific - how to communicate this? Suggestion that this is done with everything *but* div. Good idea, but consider impact on cascade.</li>
+		<li>Avoid all use of CSS 2.1 / 3 styles without an IE equivalent. For example, the use of CSS to create rounded corners on elements, or to style the first/<em>n</em>th matched element. (WHY)</li>
+		<li>Opacity can be used as there is an IE-specific alternative, although it must be made known that it's use also affects the transparency of all child elements.</li>
+		<li>setting out hover, visited, active styles, the correct order MERGE THIS</li>
+		<li>use of :active &amp; outline:none in CSS? Avoid (WHY)</li>
+		<li>Don't use absolute paths in CSS for image refs (WHY)</li>
+		<li>Use class and id on body. EXCEPTION: can't do this on body, need to use a wrapper div instead.</li>
+</ul>
+<h4>CSS Formatting</h4>
+<p>Most of these are convention, not function.</p>
+<ul>
+	<li>Properties in declaration blocks should have a preceding tab</li>
+	<li>Each property in a declaration block should be on it's own line.</li>
+	<li>Unless there is only one rule in a declaration block the opening brace should be on the same line as the selector followed by a line break and the closing brace should be on a separate line.</li>
+	<li>Always leave a space before the { (it makes searching easier)</li>
+	<li>If there is only one property it’s acceptable to have the whole declaration on one line, e.g. div#id {width:100%;}</li>
+	<li>It's also acceptable to bunch single-line blocks together when declaring a list of backgrounds (for example)</li>
+	<li>End each rule with a semi-colon (even if it’s the only rule in a block)</li>
+	<li>No spaces between property and value (e.g. color:#fff;.item:property - easier to tidy (search and replace) than pushing all to "item : property" or "item: property" or "item :property".readability is arguable. two less characters to type on each dec</li>
+	<li>Use short forms for colours where possible (e.g. #fff not #ffffff, #069 not #006699)</li>
+	<li>Make sure colour values are lowercase (e.g. #cce3f1 not #CCE3F1)</li>
+	<li>Use short forms for margin/padding where possible (e.g. padding:0 not padding:0 0 0 0;)</li>
+	<li>Aside from absolute positioning properties (top, left etc) use 0 not 0px (you can use other types of unit; 0 is 0 regardless)</li>
+	<li>Alphabetize properties in declaration blocks (anal helps prevent re-declaration bugs and improves readability. NO. Alternative method TBD.</li>
+	<li>all in lower case; CSS case sensitive (stricter browsers pay attention), consistency, only alt is mixed or uppercase</li>
+</ul>
+<h4>CSS comments</h4>
+<ul>
+	<li>When do we use CSS comments? See how this goes - we don't want to comment everything.</li>
+	<li>Need to find a decent way to differentiate between comments about a specific selector style, and comments for file structure</li>
+	<li>Fin: Use of normally unused character such as ‘=’ to denote main sections. That way u can tab thru on a ctrl + F without having to scroll forever. Here's an example of how I do it:</li>
+</ul>
+<blockquote>
+	/* = Header section<br />
+	----------------------------------------------------- */<br />
+</blockquote>
+<p>NB: The dashes serve as a visual underline to a header also.</p>
+
+<ul>
+	<li>This being the case, we need to find a replacement for /* T */</li>
+	<li>Fin: Should we define a colour and font glossary at the top also? Highlighting things like main colours of links, hovers, background colours, borders, text size in different areas etc? YES. Fin to provide example.</li>
+</ul>
+
+
+<h4>CSS ordering</h4>
+<ol>
+	<li>html elements - headings, lists, tables, forms, text, misc, links</li>
+	<li>global classes</li>
+	<li>global ids (page structure) - wrapper, header, footer, breadcrumb, nav, content, etc...</li>
+	<li>page/area-specific ids</li>
+</ol>
+
+<ul>
+	<li>Fin: I structure my CSS based on the structure of my html - header at the top, footer at the bottom etc. So therefore would normally include a commented table of contents</li>
+	<li>Fin: When a site has lots of navigation elements (primary, secondary, tertiary and footer) should they be grouped together in one commented section? I have done this in the past and its paid off in terms of updating/maintenance. If the navigation is based on the John Lewis example I would think that this should be considered</li>
+</ul>
+<h4>CSS files</h4>
+<ul>
+	<li>Method to import CSS &lt;link/ &gt;</li>
+	<li>Tweaks CSS file for IE - Separate IE6 &amp; IE7 stylesheets? No, but possibly rename tweaks to represent less-than-IE7 to allow for possible further growth, maybe tweaks-lte-ie7.css?</li>
+	<li>Mobile stylesheet. Maybe just iphone help?</li>
+	<li>Fin: Is this a site where we should have separate stylesheets? It would seem so to me - a separate sheet for database or table driven pages perhaps? TBD</li>
+</ul>
+<h4>CSS naming conventions</h4>
+<ul>
+	<li>Do we have a standard set of names, such as 'header', 'footer', 'navigation', 'breadcrumb', 'main', 'content', 'wrapper' etc NEEDS SCOPE EXERCISE</li>
+</ul>
+<ul>
+	<li>Keep CSS names as semantic as possible</li>
+	<li>use abbreviations? nav or navigation, ftr or footer? Abbreviations? To see in sample stylesheet</li>
+	<li>Allow class names for style? e.g. clearfix, float-left, etc...LIMITED, just clearfix depending on circumstances</li>
+	<li>Fin: My usual method of working is to define standard stuff first - things that apply to many elements. This even goes as far as having a standard definition for float:left;/display:inline; at the top of the page to which u add any/every element (FnE method) – that way u don’t have to go searching for each class or id in order to add the float definition. Reasoning behind this is so that we have standard elements and if there is a change later then we simply add another class and make the alterations to the norm based on that new name.</li>
+</ul>
+<h4>CSS Reset</h4>
+<ul>
+	<li>Don't use * {} reset; has knock-on impacts and reduces speed</li>
+	<li>Meyer plus a few custom styles (vertical-align for images)</li>
+	<li>Not as separate stylesheet, included at top to reduce HTTP requests</li>
+</ul>
+<h4>CSS Hack management</h4>
+<ul>
+	<li>Use conditional comments for IE hack management.</li>
+	<li>Isolate hacks in tweaks.css; re-create a declaration block in this and note where something has changed in the main CSS by using a /* T */ comment. THIS COMMENT TO BE REPLACED</li>
+	<li>Don’t use hacks based on unsupported CSS3 selectors to target browsers.</li>
+	<li>Avoid the use of clearing divs if possible. Instead try to use FnE Method or clearfix if FnE not appropriate (e.g. when modules in content need to be re-ordered).</li>
+	<li>Avoid voice-family hack. It's messy and hard to parse. Instead use Star HTML hack combined with backslash hack.</li>
+</ul>
+<h3>HTML</h3>
+<ul>
+	<li>Don't use &lt;h1&gt; to define the site title. Use it to define the page title. If there isn't an obvious page title in designs/wireframes, either talk to designers and IAs or use a hidden contextual heading.</li>
+	<li>Headings should be used in the proper sequence - don't skip from &lt;h1&gt; to &lt;h3&gt;, for example </li>
+	<li>When presenting a list of items, use an appropriate list construct such as &lt;ul&gt;, &lt;ol&gt;, or &lt;dl&gt;. Do not use paragraph or other tags. Do not use &lt;dl&gt; for anything other than pure term -&gt; definition structures. Just because the structure may fit it doesn't mean it'll work semantically.</li>
+	<li>Alt attribute text should be meaningful and describe the content of the image. Note that if this is likely to lead to repitition in the flow of the page (e.g. an image represents the same information as a heading) it's better to use no alt text to avoid repitition.</li>
+	<li>Don't use &lt;base href=&quot;...&quot; /&gt; tag (WHY)</li>
+	<li>HTML language attribute specifics</li>
+	<li>Don't use title attributes (with possible exceptions). Research SEO (lack of) impact.</li>
+	<li>Declare all attributes using double quotes ( " ) rather than single quotes ( ' ).</li>
+	<li>Declare width/height on images</li>
+	<li>Main page areas named as header, footer, wrapper, etc - a structural versus layout approach</li>
+	<li>Fin: I always define widths by column only - that way the code for a portlet/module that resides in a narrow left hand column can be copied in full and dropped in a wider central column and it will automatically scale to fit the width. This way we can also style a module by where it sits on a page by targeting the column id/class</li>
+</ul>
+
+<p>(Fin: I like to build a structure without thought for the design - using wireframe docs to map out a standard template. And then fold that into the design by finding out where necessary extra tags have to be added to cater for design elements to be added (content-out build approach). This rids the build of unnecessary html elements.)</p>
+<h4>&lt;head&gt; tags</h4>
+<p>Need something to cover X-UA i.e. DO NOT USE.</p>
+<blockquote>
+	<p>&lt;meta http-equiv="X-UA-Compatible" content="IE=7" /&gt;</p>
+</blockquote>
+
+<p>Depending on projected lifespan of site we would recommend against using this technique as site will be frozen at IE7 levels of support for life of site (5 years?) and refactoring to take into account IE8 is easier now than later. Also, the version of the IE7 rendering engine built in to IE8 is not the same as IE7-proper so may increase test time anyway.</p>
+<ul>
+	<li><a href="http://www.sitepoint.com/blogs/2009/02/19/ie8-standards-mode-opt-in/">IE8: Standards Mode Opt-In is Back From the Dead</a></li>
+	<li><a href="http://blogs.msdn.com/ie/archive/2009/02/16/just-the-facts-recap-of-compatibility-view.aspx">IEBlog: Just The Facts: Recap of Compatibility View</a></li>
+</ul>
+<p>The following tags should be used in the &lt;head&gt; on all pages.</p>
+<ul>
+	<li>&lt;title&gt; (expand on how this should work)</li>
+	<li>Description (expand on how this should work)</li>
+	<li>Keywords</li>
+	<li>Content type text/html?</li>
+	<li>favicon</li>
+	<li>iphone icon</li>
+	<li>IE imagetoolbar</li>
+	<li>IE MSSmartTagsPreventParsing</li>
+	<li>More from BaseCSS?</li>
+	<li>NO ODP</li>
+	<li>iPhone viewport</li>
+	<li>iPhone touch icon &lt;link rel=&quot;apple-touch-icon&quot; href=&quot;_format/icons/apple-touch-icon.png&quot;/&gt;</li>
+</ul>
+<p>The following tags should not be used.</p>
+
+<ul>
+	<li>Dublin Core</li>
+	<li>&lt;meta http-equiv=&quot;expires&quot; content=&quot;DATE&quot;&gt;</li>
+	<li>&lt;meta http-equiv=&quot;cache-control&quot; content=&quot;no-cache&quot;&gt;</li>
+	<li>&lt;meta http-equiv=&quot;pragma&quot; content=&quot;no-cache&quot;&gt;</li>
+	<li>&lt;meta http-equiv=&quot;msthemecompatible&quot; content=&quot;no&quot; /&gt; (can trigger <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=420363">bug in old FF</a> )</li>
+	<li>&lt;meta http-equiv=&quot;content-language&quot; content=&quot;en-gb&quot;&gt;</li>
+	<li>&lt;meta http-equiv=&quot;refresh&quot; content=&quot;15;url=http://domain.com/page.html&quot;&gt;</li>
+	<li>&lt;meta name=&quot;robots&quot; content=&quot;all&quot;&gt;</li>
+	<li>&lt;meta name=&quot;robots&quot; content=&quot;index,nofollow&quot;&gt;</li>
+	<li>&lt;meta name=&quot;robots&quot; content=&quot;noindex,follow&quot;&gt;</li>
+	<li>&lt;meta name=&quot;robots&quot; content=&quot;none&quot;&gt;</li>
+	<li>&lt;meta name=&quot;robots&quot; content=&quot;noarchive&quot;&gt;</li>
+	<li>&lt;meta name=&quot;googlebot&quot; content=&quot;noarchive&quot;&gt;</li>
+</ul>
+
+<p>Any cache control should be handled on server, not in-page.</p>
+<p>The following tags should be added only after agreement with client.</p>
+<ul>
+	<li>rating</li>
+	<li>PICS?</li>
+	<li>&lt;meta name=&quot;copyright&quot; content=&quot;Copyright owner&quot; /&gt;</li>
+	<li>&lt;meta name=&quot;author&quot; content=&quot;Author&quot; /&gt;</li>
+</ul>
+<p>Dublin Core is very difficult to populate and offers few/no real-world benefits. However, <a href="http://www.esd.org.uk/standards/egms/">eGMS</a> should be implemented for UK government sites where possible.</p>
+<h4>Comments</h4>
+<ul>
+	<li>Don't use - can trigger odd float bugs, adds needless weight to pages. Well-structured HTML, commented CSS and tools like Firebug should be adequate to understand structure.</li>
+</ul>
+<h4>Links</h4>
+<ul>
+	<li>Never use "Click here" - device dependent, offers no context</li>
+	<li>Don't repeat link text on the page (Read more). If forced to do so, hide additional contextual information using context class.</li>
+	<li>Don't repeat link text in title attribute.</li>
+</ul>
+<h4>Forms</h4>
+<p>This whole section needs sorting.</p>
+
+<ul>
+	<li>Group related fields together using the &lt;fieldset&gt; element</li>
+	<li>Name each &lt;fieldset&gt; with a valid &lt;legend&gt;. This can be hidden using CSS.</li>
+	<li>Create &lt;labels&gt; for every element and ensure you associate the label with its corresponding field using the “for” attribute where appropriate. This is especially important on radio buttons and checkboxes so that the user can click the label as well as the control to select the option.</li>
+	<li>Do not use tables for formatting.</li>
+	<li>Display legends wherever possible, otherwise hide.</li>
+</ul>
+<h4>Tables</h4>
+<ul>
+	<li>Wherever possible, table styles should be generic and re-usable then over-ridden for specific instances.</li>
+	<li>Tables must be used for tabular data (any information that has a two dimenstional relationship)</li>
+	<li>Include cellpadding, cellspacing and border attributes on the table tag for non-css browser support</li>
+	<li>Use thead, tbody, colgroup, caption, title, summary th, td. Double-check this and give an example table</li>
+	<li>Should we advocate the use of scope or id/header?</li>
+	<li>Use scope on the &lt;th&gt;'s in a single level table that has headers in both columns and rows. But if there are multiple levels of headers, go for full on headers and id.</li>
+	<li>Don't use built-in classes for zebra striping on tables; use an ID on the table and script it instead (why? it's a nice-to-have, not critical, and takes up weight - consider it behaviour).</li>
+</ul>
+<h4>Links</h4>
+<ul>
+	<li>opening in a new window through an accessible manner - JS &amp; rel="external"</li>
+</ul>
+<h4>Microformats</h4>
+<p>Use? If so, to what extent? Suggest only hCard for main details. More complex microformats after agreement with client (don't want to expose an informal API without approval, particular with e-commerce).</p>
+<h3>Print stylesheets</h3>
+<p>Need to cover this.</p>
+<p>Do we use CSS/JS to either expand links or footnote them or keep it simple?</p>
+<h3>Flash</h3>
+<ul>
+	<li>SWF Object 2.1 for embedding, dynamically through javascript</li>
+	<li>Alternative content?</li>
+	<li>Flash video/audio player?</li>
+	<li>FLVs and streaming?</li>
+	<li>Flash paths?</li>
+</ul>
+<h3>Images</h3>
+<ul>
+	<li>Formats - PNG8 and JPEG only, no GIF.</li>
+	<li>Cut structural images from PSDs, not JPEGs. Cut assets from high quality JPEGs.</li>
+	<li>Image crunching (non-lossy)- <a href="http://smush.it/">smush.it</a></li>
+	<li>Image crunching (lossy). Set photoshop to 55 for JPEG quality, optimize further as needed.</li>
+	<li>CSS Sprites</li>
+	<li>Handling transparency EXPAND</li>
+	<li>explicitly declare width and height?</li>
+	<li>Where images live in structure and why (_format vs _assets)</li>
+	<li>Inline images vs. background images SPEC THIS</li>
+	<li>Image replacement techniques for titles / logos?</li>
+</ul>
+<h3>SEO</h3>
+<p>Nothing to add here yet.</p>
+<p>But... follow Google's guidelines: <a href="http://googlewebmastercentral.blogspot.com/2009/08/optimize-your-crawling-indexing.html">Optimize your crawling &amp; indexing</a>.</p>
+<h3>Specific coding examples</h3>
+<h4>Multiple backgrounds</h4>
+<p>When the need arises for an element to have both a top and bottom background image, what is our approach:</p>
+<blockquote>
+	&lt;div class="block"&gt; ... &lt;/div&gt;&lt;div class="block_close"&gt;&lt;/div&gt;<br />
+</blockquote>
+<p>(or)</p>
+<blockquote>
+	&lt;div class="block"&gt;&lt;div&gt; ... &lt;/div&gt;&lt;/div&gt;<br />
+</blockquote>
+<p>(or)</p>
+<blockquote>
+	&lt;div class="block_container"&gt;&lt;div class="block"&gt; ... &lt;/div&gt;&lt;/div&gt;<br />
+</blockquote>
+<p>More to follow...</p>
+<h2>Server config</h2>
+<p>Anything front-end that falls outside the scope of pure templating.</p>
+<h3>Canonical domain</h3>
+<p>Check redirects from www. and other subdomains to make sure main domain is, in fact, canonical.</p>
+<h3>Relevant HPW/Exceptional performance stuff</h3>
+<p>Lots to do here.</p>
+<h3>Sitemap.xml</h3>
+<p>Very important these days.</p>
+<h3>Metadata</h3>
+<p>Good title tag and meta description tag contents are necessary.</p>
+<p>Meta keywords less useful but still worth doing.</p>
+<h3>Robots.txt</h3>
+<p>Obvious use is controlling access by crawlers (but shouldn't be used for security as very discoverable).</p>
+<p>Also used to point to sitemap.xml</p>
+<h3>Webmaster tools</h3>
+<p>Google, Yahoo, MSN. Benefits, including canonical particularly with faceted nav.</p>
+<p>Recommend doing with file or metatag?</p>
+<p>http://googlewebmastercentral.blogspot.com/2009/02/specify-your-canonical.html</p>
+<p>http://multichannelmerchant.com/ecommerce/0201-natural-search-spam/</p>
+<h3>Tracking</h3>
+<ul>
+	<li>Should it be converted to XHTML-valid or left as-is?</li>
+</ul>
+<h3>301 redirects</h3>
+<p>Strongly recommended if relaunching a site and changing URL structure.</p>
+<h3>Feeds</h3>
+<p>Recommend Atom, recommend Feedburner?</p>
+
+<p>Also, if moving feeds 301 them.</p>
+<h3>Cookies</h3>
+<p>Any impact on performance?</p>
+<p>Impact on privacy (policies) etc</p>
+<h3>Recommended URL structure</h3>
+<p>Grouping words together without using dividers is generally not a good idea. Dashes ("-") are generally treated as spaces by search engines looking for keywords in URLs and are generally considered to be the best URL divider. Underscores ("_") are second best.</p>
+<p>The forward slash is recognised as a terminator by search engines and determines depth and should give greater priority to pages at a higher level. If everything in the site is in the root it means everything has the same priority which isn't particularly useful. Ideally avoid going deeper than 4 levels but if site architecture demands it then do it.</p>
+<p>A few general rules...</p>
+<ul>
+	<li>Keep everything lowercase</li>
+	<li>Convert special characters (e.g. "&amp;" - expand to "and", "/" - convert to dash</li>
+	<li>Ignore special characters like apostrophes and question marks</li>
+	<li>Avoid any file extensions (rewrite URLs to remove index.php or similar).</li>
+</ul>
+<p>Be aware that IE6 and IE7 have some problems with creating cookies if there are any non-alphanumeric characters (dash "-" is OK, but underscore is bad "_") in the domain name (e.g.: http://www.super_website.co.uk/). This can cause serious problems in the functionality like logging in, etc.</p>
+<p>Creating proper, hierarchical URLs is helpful for people who look and navigate by URL. This is generally for more technical users but is reasonably common with that demographic. For example, there's a Firefox extension called "Go-up" that allows you to hit ALT-up arrow to go up a directory. Some browsers also have this functionality built in.</p>
+<p>URLs should be permanently unique. Don't re-use old URLs for new content.</p>
+<p>URLs should be short. Short URLs encourage e-mailing and linking, which bring in traffic. Long URLs often get split onto multiple lines in e-mails, generating frustrating 404 errors when they’re clicked.</p>
+<p>More here:</p>
+<ul>
+	<li><a href="http://www.ashbykuhlman.net/blog/2003/07/27/2227">http://www.ashbykuhlman.net/blog/2003/07/27/2227</a></li>
+	<li><a href="http://www.seomoz.org/blogdetail.php?ID=1422">http://www.seomoz.org/blogdetail.php?ID=1422</a></li>
+	<li><a href="http://www.centernetworks.com/top-3-reasons-to-use-clean-urls">http://www.centernetworks.com/top-3-reasons-to-use-clean-urls</a></li>
+</ul>
+<p>Quote from last:</p>
+<blockquote>
+	"Hackability is just as important. Predictable, hackable URL schemes invite intelligent re-use of web resources - both for regular web sites and web service APIs."
+</blockquote>
+
+</body>
+</html>
